@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="/static/styles.css">		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	</head>
+	<body>
+		<aside class="sidebar">
+			<div class="sidebar_header">
+				<img class="logo_aside" src="/static/img/logo-pig.png" style="border-radius: 50%; width: 42px;">
+				<h2>FINANZAPP</h2>
+			</div>
+			<ul class="sidebar_links" style="list-style-type: none;">
+				<li>
+					<a href="/"><span class="material-symbols-outlined">home</span><p>HOME</p></a>
+				</li>
+				<li>
+					<a href="/add">
+						<span class="material-symbols-outlined">add_box</span>
+						<p>ADD</p>
+					</a>
+				</li>
+				<li>
+					<a href="/summary"><span class="material-symbols-outlined">request_quote</span>
+						<p>SUMMARY</p></a>
+				</li>
+	
+			</ul>
+		</aside>	
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>
+

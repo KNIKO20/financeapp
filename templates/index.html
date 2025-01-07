@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finanzas Personales</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <h1>Gestión de Finanzas Personales</h1>
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="general_content">
+		<h1>Finance Management</h1>
     <a href="/add">Add Transaction</a>
+    <a href="/summary">Summary</a>
     <table>
         <thead>
             <tr>
@@ -25,14 +21,37 @@
                 <td>{{ transaction['date'] }}</td>
                 <td>{{ transaction['category'] }}</td>
                 <td>{{ transaction['amount'] }}</td>
-                <td>{{ transaction['description'] }}</td>
-                <td>
-                    <a href="/delete/{{ transaction['id'] }}">Delete</a>
+								<td class="td_description"><div class="content_table">{{ transaction['description'] }}</div></td>
+								<td>
+									<form action="/edit/{{ transaction['id'] }}" method="GET">
+										<button type="submit" >Edit</button>
+									</form>
+                  <a href="/delete/{{ transaction['id'] }}">Delete</a>
                 </td>
             </tr>
+							{% if edit_id == transaction['id'] %}
+							<tr>
+								<form action="/update/{{ transaction['id'] }}" method="POST">
+								<td>
+									<input type="date" name="date" value="{{ transaction['date'] }}" required>
+								</td>
+								<td>
+									<input type="text" value="{{ transaction['category'] }}" name="category" required>
+								</td>
+								<td>
+									<input type="number" value="{{ transaction['amount'] }}" name="amount" step="0.01" required>
+								</td>
+								<td>
+									<textarea  name="description">{{ transaction['description'] }}</textarea>
+								</td>
+								<td>
+									<button type="submit">Save</button>
+								</td>
+							</form>
+							</tr>
+							{% endif %}
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
-
+</div>
+{% endblock %}
